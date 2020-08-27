@@ -1,0 +1,54 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate autocomplete="off">
+  <div class="form-control">
+    <label for="fname">First Name</label>
+    <input
+      name="fname"
+      type="text"
+      id="fname"
+      required
+      ngModel
+      #fname="ngModel"
+      minlength="2"
+      pattern="[a-zA-Z0-9 ]*"
+    />
+    <div *ngIf="fname.invalid && (fname.dirty || fname.touched)" class="alert">
+      <div *ngIf="fname.errors.required">First Name is required.</div>
+      <div *ngIf="fname.errors.minlength">
+        First Name must be at least 2 characters long.
+      </div>
+      <div *ngIf="fname.errors.pattern">
+        Only alphanumeric characters are allowed.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-control">
+    <label for="lname">Last Name</label>
+    <input
+      name="lname"
+      type="text"
+      id="lname"
+      required
+      ngModel
+      #lname="ngModel"
+      minlength="2"
+      pattern="[a-zA-Z0-9 ]*"
+    />
+    <div *ngIf="lname.invalid && (lname.dirty || lname.touched)" class="alert">
+      <div *ngIf="lname.errors.required">Last Name is required.</div>
+      <div *ngIf="lname.errors.minlength">
+        Last Name must be at least 2 characters long.
+      </div>
+      <div *ngIf="lname.errors.pattern">
+        Only alphanumeric characters are allowed.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-control">
+    <label for="kids">Kids?</label>
+    <input name="kids" type="checkbox" id="kids" ngModel #kids="ngModel" />
+  </div>
+
+  <button [disabled]="f.invalid" type="submit">Submit</button>
+</form>
